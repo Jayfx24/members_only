@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS users(
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    pwd VARCHAR(255) NOT NULL,
+    member BOOLEAN DEFAULT false,
+    created_at TIMESTAMP DEFAULT NOW(),
+    member_since DATE,
+    is_admin BOOLEAN DEFAULT false
+);
+
+CREATE TABLE IF NOT EXISTS posts(
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    title VARCHAR(255) NOT NULL,
+    message VARCHAR(255) NOT NULL,
+    author_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+);
