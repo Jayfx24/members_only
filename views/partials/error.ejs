@@ -1,0 +1,11 @@
+<div class="errs">
+    <% if (locals.errors) {%>
+        <ul class="err__list">
+            <% errors.forEach((err)=>{ %>
+                <li class="err__item">
+                    <%= err.msg %>
+                </li>
+                <% }); %>
+        </ul>
+        <% }; %>
+</div>
