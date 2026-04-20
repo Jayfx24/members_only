@@ -1,13 +1,13 @@
 const { body, validationResult, matchedData } = require("express-validator");
 const { genPwd, validPwd } = require("../lib/passwordUtils");
-const { validateUser } = require("../utils");
+const { validateUser, validateLogin } = require("../utils");
+const db = require("../models/query");
 
 function getSignUp(req, res) {
   res.render("forms/createUser", { title: "Sign Up" });
 }
 
-function postSignUp(req, res) {
-  // console.log(req.body);
+async function postSignUp(req, res, next) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).render("forms/createUser", {
@@ -16,15 +16,41 @@ function postSignUp(req, res) {
       data: matchedData(req),
     });
   }
+
   // hash
-  const { pwd } = matchedData(req);
+  const { pwd, cPwd: _, ...data } = matchedData(req);
+  data["pwd"] = await genPwd(pwd);
+
   // add to db
-  console.log(matchedData(req));
-  console.log(genPwd(pwd));
+  try {
+    await db.addUser(data);
+  } catch (err) {
+    // err
+    next(err);
+  }
+  res.redirect("/");
+}
+
+async function getLogin(req, res) {
+  res.render("forms/loginUser");
+}
+
+async function getLoginSuccess(req, res) {
+  const user = await db.findUserId(req.user)
+  res.render("index", { user });
+}
+
+function logout(req, res, next) {
+  req.logout((err) => {
+    if (err) return next(err);
+  });
   res.redirect("/");
 }
 
 module.exports = {
   getSignUp,
+  getLogin,
   postSignUp: [validateUser, postSignUp],
+  getLoginSuccess,
+  logout,
 };

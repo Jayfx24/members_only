@@ -1,6 +1,5 @@
 const { body } = require("express-validator");
-
-
+const db = require("./models/query");
 const err = {
   alpha: "must only contain letters.",
   length: (min, max) => `must be between ${min} and ${max} characters`,
@@ -32,22 +31,18 @@ const validateUser = [
     .withMessage(`Username name ${err.notEmpty}`)
     .isLength({ min: 4, max: 10 })
     .withMessage(`Username ${err.length(4, 10)}`),
-  body("pwd")
-    .trim()
-    .notEmpty()
-    .withMessage(`Password ${err.notEmpty}`)
-
-    .isLength({ min: 8 })
-    .withMessage(`Password ${err.leastLen(8)}`)
-    .isStrongPassword({
-      min: 8,
-      minLowercase: 1,
-      minUppercase: 1,
-      minSymbols: 1,
-    })
-    .withMessage(
-      `Password must be a combination of one uppercase , one lowercase, one special char`,
-    ),
+  body("pwd").trim().notEmpty().withMessage(`Password ${err.notEmpty}`),
+  // .isLength({ min: 8 })
+  // .withMessage(`Password ${err.leastLen(8)}`)
+  // .isStrongPassword({
+  //   min: 8,
+  //   minLowercase: 1,
+  //   minUppercase: 1,
+  //   minSymbols: 1,
+  // })
+  // .withMessage(
+  //   `Password must be a combination of one uppercase , one lowercase, one special char`,
+  // ),
   body("cPwd")
     .trim()
     .notEmpty()
@@ -56,6 +51,14 @@ const validateUser = [
     .withMessage(`The passwords ${err.passMatch}`),
 ];
 
-
-
-module.exports = { validateUser };
+const validateLogin = [
+  body("username")
+    .trim()
+    .notEmpty()
+    .custom(async (value) => {
+      const user = await db.findUser(value);
+      console.log(value,user)
+      if (!user) throw new Error("User not found");
+    }),
+];
+module.exports = { validateUser, validateLogin };
