@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h1>We are logged in as <%= locals.user.username %></h1>
-</body>
+<%- include("./partials/head.ejs") %>
+
+    <body>
+        <section class="wrapper">
+            <%- include("./partials/nav.ejs") %>
+            
+                <h1>We are logged in as <%= locals?.currentUser?.username %>
+                </h1>
+                <p>Let's <a href="/logout">logout</a></p>
+        </section>
+    </body>
+
 </html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("./partials/head.ejs") %>
+
+
+    <body>
+        <section class="wrapper">
+            <%- include("./partials/nav.ejs") %>
+
+                <h1>You are logged in as <%= locals?.currentUser?.username %>
+                </h1>
+                <h2>Add new <a href="/posts/<%= locals?.currentUser?.id%>/create-post">Posts</a></h2>
+                <% locals?.posts.map(post=>{ %>
+                    <li>
+                        <%=post.message%>
+                    </li>
+                    <%})%>
+                        <a href="/logout">Log-out</a>
+        </section>
+    </body>
+
+</html>
