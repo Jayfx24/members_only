@@ -1,6 +1,6 @@
 const { body, validationResult, matchedData } = require("express-validator");
 const { genPwd, validPwd } = require("../lib/passwordUtils");
-const { validateUser, validateLogin } = require("../utils");
+const { validateUser } = require("../utils");
 const db = require("../models/query");
 
 function getSignUp(req, res) {
@@ -36,15 +36,15 @@ async function getLogin(req, res) {
 }
 
 async function getLoginSuccess(req, res) {
-  const user = await db.findUserId(req.user)
-  res.render("index", { user });
+ 
+  res.redirect("/posts/feeds");
 }
 
 function logout(req, res, next) {
   req.logout((err) => {
     if (err) return next(err);
   });
-  res.redirect("/");
+  res.redirect("/login");
 }
 
 module.exports = {
