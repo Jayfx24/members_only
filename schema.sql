@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users(
     username VARCHAR(255) NOT NULL,
     pwd VARCHAR(255) NOT NULL,
     member BOOLEAN DEFAULT false,
-    created_at TIMESTAMP DEFAULT NOW(),
+    created_at TIMESTAMPTZ DEFAULT NOW(),
     member_since DATE,
     is_admin BOOLEAN DEFAULT false
 );
@@ -15,5 +15,5 @@ CREATE TABLE IF NOT EXISTS posts(
     title VARCHAR(255) NOT NULL,
     message VARCHAR(255) NOT NULL,
     author_id INTEGER NOT NULL,
-    created_at TIMESTAMP DEFAULT NOW()
+    created_at TIMESTAMPTZ DEFAULT NOW()
 );

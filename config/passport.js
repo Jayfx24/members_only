@@ -8,12 +8,12 @@ const customFields = {
   passwordField: "pwd",
 };
 
-const verifyCb = async (username, passport, done) => {
+const verifyCb = async (username, pwd, done) => {
   try {
     const user = await db.findUser(username);
     if (!user) return done(null, false);
 
-    return validPwd(passport, user.pwd) ? done(null, user.id) : done(null, false);
+    return validPwd(pwd, user.pwd) ? done(null, user) : done(null, false);
   } catch (err) {
     done(err);
   }
@@ -23,10 +23,10 @@ const strategy = new LocalStrategy(customFields, verifyCb);
 
 passport.use(strategy);
 
-passport.serializeUser((user, done) => done(null, user));
+passport.serializeUser((user, done) => done(null, user.id));
 
 passport.deserializeUser((userId, done) => {
-    console.log('user id ='+userId)
-  db.findUserId(userId).then((user) =>
-     done(null, user.id)).catch((err) => done(err))
+  db.findUserId(userId)
+    .then((user) => done(null, user))
+    .catch((err) => done(err));
 });

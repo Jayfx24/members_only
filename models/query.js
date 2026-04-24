@@ -22,9 +22,26 @@ async function findUserId(id) {
   const { rows } = await pool.query("SELECT * FROM users WHERE id = $1;", [id]);
   return rows[0];
 }
+// posts
+async function posts() {
+  // if user not authenticated send only msg
+  const { rows } = await pool.query("SELECT * FROM posts;");
+  return rows;
+}
+
+async function newPost({ title, message, userID }) {
+ await pool.query(
+    "INSERT INTO posts (title,message,author_id) VALUES($1,$2,$3)",
+    [title, message, userID],
+  );
+}
 
 module.exports = {
   addUser,
   findUser,
   findUserId,
+  posts,
+  newPost
 };
+
+// posts
