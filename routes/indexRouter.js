@@ -12,13 +12,13 @@ const {
 router.get("/register", getSignUp);
 router.post("/register", postSignUp);
 router.get("/login", getLogin);
-router.get("/login-success", getLoginSuccess);
+router.get("/feeds", getLoginSuccess);
 
 router.post(
   "/login",
   passport.authenticate("local", {
-    failureRedirect: "/",
-    successRedirect: "/login-success",
+    failureRedirect: "/login",
+    successRedirect: "/feeds",
   }),
 );
 router.get("/logout", logout);
