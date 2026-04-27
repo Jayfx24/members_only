@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<%- include("../partials/head.ejs") %>
+
 
 <body>
-    <%- include("../partials/error.ejs") %>
-    <form action="/login" method="post">
+    <section class="wrapper">
+<%- include("../partials/nav.ejs") %>
 
-        <div class="form-groups">
-            <div class="form-group">
-                <label for="username">Username: </label>
-                <input type="text" name="username">
+        <%- include("../partials/error.ejs") %>
+        <form action="/login" method="post">
+            <div class="form-groups">
+                <div class="form-group">
+                    <label for="username">Username: </label>
+                    <input type="text" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" name="pwd">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="pwd">Password:</label>
-                <input type="password" name="pwd">
-            </div>
-        </div>
-        <button type="submit">Submit</button>
-    </form>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
 
 </body>
 

@@ -32,7 +32,7 @@ async function postSignUp(req, res, next) {
 }
 
 async function getLogin(req, res) {
-  res.render("forms/loginUser");
+  res.render("forms/loginUser",{title: 'Login'});
 }
 
 async function getLoginSuccess(req, res) {
