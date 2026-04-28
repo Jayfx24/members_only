@@ -6,8 +6,9 @@ const {
 } = require("../controllers/postsController");
 const { isAuth, isAdmin } = require("./authMiddleware");
 
-router.get("/feeds", isAuth, allPosts);
-router.get("/:userid/create-post", isAuth, getNewPost);
-router.post("/:userid/create-post", isAuth, postNewPost);
+router.use(isAuth);
+router.get("/feeds", allPosts);
+router.get("/:userid/create-post", getNewPost);
+router.post("/:userid/create-post", postNewPost);
 
 module.exports = router;
