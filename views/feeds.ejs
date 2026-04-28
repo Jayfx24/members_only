@@ -3,21 +3,35 @@
 
 <%- include("./partials/head.ejs") %>
 
-
     <body>
-        <section class="wrapper">
-            <%- include("./partials/nav.ejs") %>
+        <%- include("./partials/nav.ejs") %>
+            <main class="wrapper">
+                <section class="content">
+                    <div class="add-post">
+                        <a class="add-post__link" href="/posts/<%= locals?.currentUser?.id%>/create-post">New Post</a>
+                    </div>
 
-                <h1>You are logged in as <%= locals?.currentUser?.username %>
-                </h1>
-                <h2>Add new <a href="/posts/<%= locals?.currentUser?.id%>/create-post">Posts</a></h2>
-                <% locals?.posts.map(post=>{ %>
-                    <li>
-                        <%=post.message%>
-                    </li>
-                    <%})%>
-                        <a href="/logout">Log-out</a>
-        </section>
+                    <ul class="posts">
+                        <% locals?.posts.map(post=>{ %>
+                            <li class="post__item">
+                                <h2 class="title" ><%=post.title%></h2>
+                                <div class="">
+                                    <p class="message">
+                                        <%=post.message%>
+                                    </p>
+                                </div>
+                                <div class="row gap-sm">
+                                    <p class="author">Author: <%=post?.username || 'unknown'%></p>
+                                    <p class="post__date">Posted: <%=post?.created_at || 'unknown'%></p>
+                                    
+                                </div>
+                            </li>
+                            <%})%>
+                    </ul>
+                   
+                </section>
+
+            </main>
     </body>
 
 </html>

@@ -3,7 +3,7 @@ const { genPwd, validPwd } = require("../lib/passwordUtils");
 const { validateUser } = require("../utils");
 const db = require("../models/query");
 
-function getSignUp(req, res) {
+function getSignUp(req, res, next) {
   res.render("forms/createUser", { title: "Sign Up" });
 }
 
@@ -31,12 +31,11 @@ async function postSignUp(req, res, next) {
   res.redirect("/");
 }
 
-async function getLogin(req, res) {
-  res.render("forms/loginUser",{title: 'Login'});
+async function getLogin(req, res, next) {
+  res.render("forms/loginUser", { title: "Login" });
 }
 
-async function getLoginSuccess(req, res) {
- 
+async function getLoginSuccess(req, res, next) {
   res.redirect("/posts/feeds");
 }
 
@@ -47,10 +46,18 @@ function logout(req, res, next) {
   res.redirect("/login");
 }
 
+
+
+
+
+// render for 404 and other error
+
 module.exports = {
   getSignUp,
   getLogin,
   postSignUp: [validateUser, postSignUp],
   getLoginSuccess,
   logout,
+  
 };
+

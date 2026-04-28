@@ -1,15 +1,15 @@
 const db = require("../models/query");
 
-async function allPosts(req, res) {
+async function allPosts(req, res, next) {
   const posts = await db.posts();
-  res.render("feeds", {title: 'Feeds', posts });
+  res.render("feeds", { title: "Feeds", posts });
 }
 
-async function getNewPost(req, res) {
-  res.render("forms/createPost",{title: 'New Message' });
+async function getNewPost(req, res, next) {
+  res.render("forms/createPost", { title: "New Message" });
 }
 
-async function postNewPost(req, res) {
+async function postNewPost(req, res, next) {
   // if user is authenticated add new post to db
   const { title, message } = req.body;
   const userID = req.user.id;

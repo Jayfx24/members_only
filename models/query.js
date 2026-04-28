@@ -23,14 +23,20 @@ async function findUserId(id) {
   return rows[0];
 }
 // posts
+async function detailedPosts() {
+  const { rows } = await pool.query(
+    "SELECT posts.*,users.username FROM posts JOIN users ON posts.author_id = users.id;",
+  );
+  return rows;
+}
 async function posts() {
   // if user not authenticated send only msg
-  const { rows } = await pool.query("SELECT * FROM posts;");
+  const { rows } = await pool.query("SELECT title, message FROM posts;");
   return rows;
 }
 
 async function newPost({ title, message, userID }) {
- await pool.query(
+  await pool.query(
     "INSERT INTO posts (title,message,author_id) VALUES($1,$2,$3)",
     [title, message, userID],
   );
@@ -41,7 +47,7 @@ module.exports = {
   findUser,
   findUserId,
   posts,
-  newPost
+  newPost,
 };
 
 // posts
