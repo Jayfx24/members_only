@@ -1,7 +1,9 @@
 const db = require("../models/query");
-
+const pagination = require("../lib/pagination");
 async function allPosts(req, res, next) {
-  const posts = await db.posts();
+  const allPosts = await db.posts();
+  let p = req.query.p;
+  const { page, pageCount, posts } = pagination(allPosts, p);
   res.render("feeds", { title: "Feeds", posts });
 }
 
