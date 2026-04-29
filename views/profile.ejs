@@ -3,18 +3,18 @@
 <%- include("./partials/head.ejs") %>
 
     <body>
-        <section class="wrapper">
-            <%- include("./partials/nav.ejs") %>
-
-                <article class="profile">
-                    <p>
-                        <%=locals?.profile.name|| undefined %>
-                    </p>
-                </article>
-                <section class="user__posts">
-
+        <%- include("./partials/header.ejs") %>
+            <main>
+                <section class="wrapper">
+                    <article class="profile">
+                        <p>
+                            <%=locals?.profile.name|| undefined %>
+                        </p>
+                    </article>
+                    <section class="user__posts">
+                    </section>
                 </section>
-                 </section>
+            </main>
     </body>
 
 </html>

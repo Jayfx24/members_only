@@ -5,9 +5,9 @@
 
 
     <body>
+         <%- include("../partials/header.ejs") %>
         <section class="wrapper">
-            <%- include("../partials/nav.ejs") %>
-
+           
                 <%- include("../partials/error.ejs") %>
                     <form action="/posts/<%= locals.currentUser.id%>/create-post " method="post">
                         <div class="form-groups">

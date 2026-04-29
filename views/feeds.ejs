@@ -4,34 +4,38 @@
 <%- include("./partials/head.ejs") %>
 
     <body>
-        <%- include("./partials/nav.ejs") %>
-            <main class="wrapper">
+        <%- include("./partials/header.ejs") %>
+        <main >
+            <div class="wrapper">
                 <section class="content">
                     <div class="add-post">
                         <a class="add-post__link" href="/posts/<%= locals?.currentUser?.id%>/create-post">New Post</a>
                     </div>
-
                     <ul class="posts">
                         <% locals?.posts.map(post=>{ %>
                             <li class="post__item">
-                                <h2 class="title" ><%=post.title%></h2>
+                                <h2 class="title">
+                                    <%=post.title%>
+                                </h2>
                                 <div class="">
                                     <p class="message">
                                         <%=post.message%>
                                     </p>
                                 </div>
                                 <div class="row gap-sm">
-                                    <p class="author">Author: <%=post?.username || 'unknown'%></p>
-                                    <p class="post__date">Posted: <%=post?.created_at || 'unknown'%></p>
-                                    
+                                    <p class="author">Author: <%=post?.username || 'unknown' %>
+                                    </p>
+                                    <p class="post__date">Posted: <%=post?.created_at || 'unknown' %>
+                                    </p>
                                 </div>
                             </li>
                             <%})%>
                     </ul>
-                   
                 </section>
+            </div>
 
-            </main>
+        </main>
+        <footer></footer>
     </body>
 
 </html>

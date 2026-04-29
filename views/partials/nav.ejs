@@ -1,20 +1,17 @@
-<nav class="nav row ">
-    <div class="wrapper ">
-        <div class="nav-inner row btw f-center">
-            <span class="logo">Priv. Club</span>
-            <ul class="nav__items row gap-sm ">
-                <% if (! locals.authenticated) { %>
-                    <li class="nav__item"><a href="/" class="nav__link">Home</a></li>
-                    <li class="nav__item"><a href="/login" class="nav__link">Login</a></li>
-                    <li class="nav__item"><a href="/register" class="nav__link">Register</a></li>
-                    <%}else{%>
-                        <li class="nav__item"><a href="/" class="nav__link">Home</a></li>
-                        <li class="nav__item"><a href="/posts/feeds" class="nav__link">Posts</a></li>
-                        <li class="nav__item"><a href="/user"
-                                class="nav__link">Profile</a></li>
-                        <li class="nav__item"><a href="/logout" class="nav__link">Sign Out</a></li>
-                        <%}%>
-            </ul>
-        </div>
-    </div>
+<nav class="nav" id="primary-navigation">
+    <!-- <div class="nav-inner row btw f-center"> -->
+        
+    <ul class="nav__items row gap-sm ">
+        <% if (! locals.authenticated) { %>
+            <li class="nav__item"><a href="/" class="nav__link">Home</a></li>
+            <li class="nav__item"><a href="/login" class="nav__link">Login</a></li>
+            <li class="nav__item"><a href="/register" class="nav__link">Register</a></li>
+            <%}else{%>
+                <li class="nav__item"><a href="/" class="nav__link">Home</a></li>
+                <li class="nav__item"><a href="/posts/feeds" class="nav__link">Posts</a></li>
+                <li class="nav__item"><a href="/user" class="nav__link">Profile</a></li>
+                <li class="nav__item"><a href="/logout" class="nav__link">Sign Out</a></li>
+                <%}%>
+    </ul>
+    <!-- </div> -->
 </nav>
