@@ -122,9 +122,7 @@ header {
 
 
 /* button */
-.button {
-
-}
+.button {}
 
 /* add post */
 .add-post {
@@ -149,4 +147,49 @@ header {
     border: 1px solid;
     padding: var(--space-2);
 
+}
+
+.mobile-nav-toggle {
+    display: none;
+}
+
+@media (max-width:50em) {
+    .primary-navigation {
+        display: none;
+        position: absolute;
+        background-color: red;
+        text-align: center;
+        inset: 70px var(--space-2) auto;
+        padding-block: var(--space-2);
+    }
+
+    .primary-navigation[data-visible] {
+        display: block;
+    }
+
+    .nav__items {
+        flex-direction: column;
+    }
+
+    .mobile-nav-toggle {
+        display: block;
+        padding: var(--space-2);
+    }
+}
+
+/* hidden */
+.visually-hidden {
+    border: 0;
+    clip-path: inset(50%);
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.opened {
+    display: block;
+    position: fixed;
 }
