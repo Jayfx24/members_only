@@ -22,6 +22,8 @@ async function findUserId(id) {
   const { rows } = await pool.query("SELECT * FROM users WHERE id = $1;", [id]);
   return rows[0];
 }
+
+
 // posts
 async function detailedPosts() {
   const { rows } = await pool.query(
@@ -42,12 +44,23 @@ async function newPost({ title, message, userID }) {
   );
 }
 
+// get user posts
+
+async function userPosts(id) {
+  const { rows } = await pool.query(
+    "SELECT title, message FROM posts WHERE author_id = $1;",
+    [id],
+  );
+  return rows;
+}
+
 module.exports = {
   addUser,
   findUser,
   findUserId,
   posts,
   newPost,
+  userPosts,
 };
 
 // posts

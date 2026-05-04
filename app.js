@@ -10,7 +10,6 @@ const postsRoutes = require("./routes/postsRouter");
 const userRoutes = require("./routes/userRouter");
 const passport = require("passport");
 const customError = require("./errors/CustomError");
-const { isAuth, isAdmin } = require("./routes/authMiddleware");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -42,7 +41,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/user", userRoutes);
+app.use("/:user", userRoutes);
 app.use("/posts", postsRoutes);
 app.use("/", indexRoutes);
 app.use(function (req, res) {
