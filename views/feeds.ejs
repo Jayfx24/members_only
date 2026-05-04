@@ -5,38 +5,37 @@
 
     <body>
         <%- include("./partials/header.ejs") %>
-        <main >
-            <div class="wrapper">
-                <section class="content">
-                    <div class="add-post">
-                        <a class="add-post__link" href="/posts/<%= locals?.currentUser?.id%>/create-post">New Post</a>
-                    </div>
-                    <ul class="posts">
-                        <% locals?.posts.map(post=>{ %>
-                            <li class="post__item">
-                                <h2 class="title">
-                                    <%=post.title%>
-                                </h2>
-                                <div class="">
-                                    <p class="message">
-                                        <%=post.message%>
-                                    </p>
-                                </div>
-                                <div class="row gap-sm">
-                                    <p class="author">Author: <%=post?.username || 'unknown' %>
-                                    </p>
-                                    <p class="post__date">Posted: <%=post?.created_at || 'unknown' %>
-                                    </p>
-                                </div>
-                            </li>
-                            <%})%>
-                    </ul>
-                </section>
-            </div>
 
-        </main>
-        <footer></footer>
-        <script defer src="/js/script.js"></script>
+            <main>
+                <div class="wrapper">
+                    <section class="content">
+                        <div class="add-post">
+                            <a class="add-post__link" href="/posts/<%= locals?.currentUser?.id%>/create-post">New
+                                Post</a>
+                        </div>
+
+                        <section class="posts">
+                            <%- include("./partials/posts.ejs") %>
+                                <div class="pagination">
+                                    <ul class="pag-list">
+                                        <li class="pag-item">
+                                            <% if (pageCount> 1){ %>
+                                                <% for (let i=1; i < pageCount + 1; i++){ %>
+                                                    <a href="/posts/feeds?p=<%= i %>" class="pag-link">
+                                                        <%=i%>
+                                                    </a>
+                                                    <% }%>
+                                                        <% }%>
+                                        </li>
+                                    </ul>
+                                </div>
+                        </section>
+                    </section>
+                </div>
+
+            </main>
+            <footer></footer>
+            <script defer src="/js/script.js"></script>
     </body>
 
 </html>

@@ -6,13 +6,56 @@
         <%- include("./partials/header.ejs") %>
             <main>
                 <section class="wrapper">
-                    <article class="profile">
-                        <p>
-                            <%=locals?.profile.name|| undefined %>
-                        </p>
-                    </article>
-                    <section class="user__posts">
-                    </section>
+                    <div class="row gap-sm height-100">
+                        <article class="user-profile col padding-inline-700 padding-block-500 border gap">
+                            <div class="user__info col g-center">
+                                <div class="avatar">
+                                </div>
+                                <h2 class="fullname">
+                                    <%=profile.first_name|| undefined %>
+                                        <%=profile.last_name|| undefined %>
+                                </h2>
+                                <p class="username">@<%= profile.username %>
+                                </p>
+                            </div>
+                            <ul class="user__details">
+                                <li class="detail">
+                                    <p>Post count : <span class=""><%= postsLength %></span></p>
+                                </li>
+                                <li class="detail">
+                                    <p>Joined : <span class="">
+                                            <%= new Date(profile.created_at).toDateString() %>
+                                        </span></p>
+                                </li>
+                                <% if (profile.member) { %>
+                                    <li class="detail">
+                                        <p>Member since : <span class="">
+                                                <%=profile.member_since%>
+                                            </span></p>
+                                    </li>
+                                    <% } %>
+                                        <% if (profile.admin) { %>
+                                            <li class="detail"><span class="admin">Admin</span></li>
+                                            <% } %>
+                            </ul>
+                        </article>
+                        <section class="user__posts f-col padding-inline-500">
+                            <%- include("./partials/posts.ejs") %>
+                                <div class="pagination">
+                                    <ul class="pag-list">
+                                        <li class="pag-item">
+                                            <% if (pageCount> 1){ %>
+                                                <% for (let i=1; i < pageCount + 1; i++){ %>
+                                                    <a href="/user/profile/feeds?p=<%= i %>" class="pag-link">
+                                                        <%=i%>
+                                                    </a>
+                                                    <% }%>
+                                                        <% }%>
+                                        </li>
+                                    </ul>
+                                </div>
+                        </section>
+                    </div>
                 </section>
             </main>
     </body>
