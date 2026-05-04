@@ -10,7 +10,7 @@
                 <div class="wrapper">
                     <section class="content">
                         <div class="add-post">
-                            <a class="add-post__link" href="/posts/<%= locals?.currentUser?.id%>/create-post">New
+                            <a class="add-post__link" href="/posts/create-post">New
                                 Post</a>
                         </div>
 
@@ -34,8 +34,8 @@
                 </div>
 
             </main>
-            <footer></footer>
-            <script defer src="/js/script.js"></script>
+        <%- include("./partials/footer.ejs") %>
+           
     </body>
 
 </html>

@@ -5,37 +5,46 @@
 
 
     <body>
-        <section class="wrapper">
-            <%- include("../partials/nav.ejs") %>
-                <%- include("../partials/error.ejs") %>
-                    <form action="" method="post">
-                        <div class="form-groups">
-                            <div class="row">
-                                <div class="form-group">
-                                    <label for="fn">First Name:</label>
-                                    <input type="text" name="fn" value="<%=locals.data?.fn%>" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="ln">Last Name:</label>
-                                    <input type="text" name="ln" value="<%=locals.data?.ln%>" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="username">Username: </label>
-                                <input type="text" name="username" value="<%=locals.data?.username%>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password:</label>
-                                <input type="password" name="pwd" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cPwd">Confirm Password:</label>
-                                <input type="password" name="cPwd" required>
-                            </div>
-                        </div>
-                        <button type="submit">Submit</button>
-                    </form>
-        </section>
+    <%- include("../partials/header.ejs") %>
+
+        <main>
+            <section class="wrapper">
+              <div class="form-content">
+                  <div class="form-wrapper border f-col ">
+                            <h1 class="form__title">Register</h1>
+                            <form action="" method="post" class="form col gap-x">
+                                    <%- include("../partials/error.ejs") %>
+                                    <div class="form-groups col">
+                                        <div class="row two-col gap">
+                                            <div class="form-group">
+                                                <label for="fn">First Name</label>
+                                                <input type="text" name="fn"  id="fn" value="<%=locals.data?.fn%>" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ln">Last Name</label>
+                                                <input type="text" name="ln"  id="ln" value="<%=locals.data?.ln%>" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="username">Username </label>
+                                            <input type="text" name="username" id="username" value="<%=locals.data?.username%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pwd">Password</label>
+                                            <input type="password" name="pwd" id="pwd" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cPwd">Confirm Password</label>
+                                            <input type="password" name="cPwd" id="cPwd" required>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="button">Submit</button>
+                                </form>
+                                  </section>
+                  </div>
+              </div>
+        </main>
+        <%- include("../partials/footer.ejs") %>
 
     </body>
 
