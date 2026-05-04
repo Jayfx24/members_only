@@ -4,7 +4,8 @@ async function allPosts(req, res, next) {
   const allPosts = await db.posts();
   let p = req.query.p;
   const { page, pageCount, posts } = pagination(allPosts, p);
-  res.render("feeds", { title: "Feeds", posts });
+  console.log(pageCount)
+  res.render("feeds", { title: "Feeds", posts, pageCount });
 }
 
 async function getNewPost(req, res, next) {
