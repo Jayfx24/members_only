@@ -1,0 +1,46 @@
+<%- include("./partials/head.ejs") %>
+
+    <body>
+        <%- include("./partials/header.ejs") %>
+            <main>
+                <section class="content">
+                    <div class="form-wrapper">
+
+                        <% if (!currentUser.member) {%>
+
+                            <form method="post" action="/<%= currentUser.username %>/join-club">
+                                <%- include("./partials/error.ejs") %>
+
+                                    <div class="form-group">
+                                        <label for="join-pwd">
+                                            Enter our membership secret phrase <br><span>(hint: the 3rd planet in our
+                                                solar
+                                                system)</span>
+                                        </label>
+                                        <input type="password" name="join-pwd" id="join-pwd">
+                                    </div>
+                                    <button type="submit">JOIN</button>
+                            </form>
+                            <% } else{ %>
+                                
+
+                                    <form method="post" action="/<%= currentUser.username %>/admin">
+                                        <%- include("./partials/error.ejs") %>
+
+                                            <div class="form-group">
+                                                <label for="adminPhrase">
+                                                    How many moons does Saturn have? </span>
+                                                </label>
+                                                <input type="password" name="adminPhrase" id="adminPhrase">
+                                            </div>
+                                            <button type="submit">JOIN</button>
+                                    </form>
+
+                                    <% } %>
+
+                    </div>
+
+
+                </section>
+            </main>
+    </body>

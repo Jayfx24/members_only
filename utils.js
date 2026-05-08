@@ -57,8 +57,26 @@ const validateLogin = [
     .notEmpty()
     .custom(async (value) => {
       const user = await db.findUser(value);
-      console.log(value,user)
+      console.log(value, user);
       if (!user) throw new Error("User not found");
     }),
 ];
-module.exports = { validateUser, validateLogin };
+
+const validateMember = [
+  body("join-pwd")
+    .notEmpty()
+    .withMessage("Password should not be empty")
+    .custom(async (value) => {
+      if (value.toLowerCase() !== "earth") throw new Error("Wrong...try earth");
+    }),
+];
+
+const validateAdmin = [
+  body("adminPhrase")
+    .notEmpty()
+    .withMessage("Password should not be empty")
+    .custom(async (value) => {
+      if (value !== "274") throw new Error("Wrong...try Google Searching !!!");
+    }),
+];
+module.exports = { validateUser, validateLogin, validateMember, validateAdmin };

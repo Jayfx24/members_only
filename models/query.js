@@ -23,12 +23,18 @@ async function findUserId(id) {
   return rows[0];
 }
 
-
+async function addMember(status, date, id) {
+  await pool.query(
+    "UPDATE users SET member = $1, member_since = $2 WHERE id = $3",
+    [status, date, id],
+  );
+}
 // posts
 async function detailedPosts() {
   const { rows } = await pool.query(
     "SELECT posts.*,users.username FROM posts JOIN users ON posts.author_id = users.id;",
   );
+
   return rows;
 }
 async function posts() {
@@ -48,7 +54,7 @@ async function newPost({ title, message, userID }) {
 
 async function userPosts(id) {
   const { rows } = await pool.query(
-    "SELECT title, message FROM posts WHERE author_id = $1;",
+    "SELECT title, message, author_id, created_at FROM posts WHERE author_id = $1;",
     [id],
   );
   return rows;
@@ -58,7 +64,9 @@ module.exports = {
   addUser,
   findUser,
   findUserId,
+  addMember,
   posts,
+  detailedPosts,
   newPost,
   userPosts,
 };

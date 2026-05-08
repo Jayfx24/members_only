@@ -1,21 +1,20 @@
-    <ul class="posts__list">
-        <% locals?.posts.map(post=>{ %>
-            <li class="post__item">
-                <h2 class="title">
-                    <%=post.title%>
-                </h2>
-                <div class="">
-                    <p class="message">
-                        <%=post.message%>
-                    </p>
-                </div>
-                <div class="row gap-sm">
-                    <p class="author">Author: <%=post?.username || 'unknown' %>
-                    </p>
-                    <p class="post__date">Posted: <%=post?.created_at || 'unknown' %>
-                    </p>
-                </div>
-            </li>
-            <%})%>
-    </ul>
-   
+<ul class="posts__list">
+    <% locals?.posts.map(post=>{ %>
+        <li class="post__item">
+            <h2 class="title">
+                <%=post.title%>
+            </h2>
+            <div class="">
+                <p class="message">
+                    <%=post.message%>
+                </p>
+            </div>
+            <div class="row gap-sm">
+                <p class="author">Author: <%=post.author_id===currentUser.id ? 'You' : post.username || 'unknown' %>
+                </p>
+                <p class="post__date">Posted: <%=new Date(post?.created_at)?.toLocaleString() || 'unknown' %>
+                </p>
+            </div>
+        </li>
+        <%})%>
+</ul>

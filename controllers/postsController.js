@@ -1,12 +1,16 @@
 const db = require("../models/query");
 const pagination = require("../lib/pagination");
+
 async function allPosts(req, res, next) {
-  const allPosts = await db.posts();
+  const allPosts = res.locals.currentUser.member
+    ? await db.detailedPosts()
+    : await db.posts();
   let p = req.query.p;
   const { page, pageCount, posts } = pagination(allPosts, p);
-  console.log(pageCount)
   res.render("feeds", { title: "Feeds", posts, pageCount });
 }
+
+
 
 async function getNewPost(req, res, next) {
   res.render("forms/createPost", { title: "New Message" });

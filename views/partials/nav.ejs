@@ -7,11 +7,15 @@
             <li class="nav__item"><a href="/login" class="nav__link">Login</a></li>
             <li class="nav__item"><a href="/register" class="nav__link">Register</a></li>
             <%}else{%>
-                <li class="nav__item"><a href="/" class="nav__link">Home</a></li>
-                <li class="nav__item"><a href="/posts/feeds" class="nav__link">Posts</a></li>
-                <li class="nav__item"><a href="/<%= currentUser.username %>/profile" class="nav__link">Profile</a></li>
-                <li class="nav__item"><a href="/logout" class="nav__link">Sign Out</a></li>
-                <%}%>
+                <% if (!currentUser.member) {%>
+                    <li class="nav__item"><a href="/<%= currentUser.username %>/join-club">JOIN CLUB</a></li>
+                    <% } %>
+
+                        <li class="nav__item"><a href="/posts/feeds" class="nav__link">Posts</a></li>
+                        <li class="nav__item"><a href="/<%= currentUser.username %>/profile"
+                                class="nav__link">Profile</a></li>
+                        <li class="nav__item"><a href="/logout" class="nav__link">Sign Out</a></li>
+                        <%}%>
     </ul>
     <!-- </div> -->
 </nav>

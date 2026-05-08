@@ -51,6 +51,11 @@ a {
     color: inherit;
 }
 
+dialog {
+    margin: auto;
+    padding: var(--space-1) var(--space-2);
+}
+
 .row {
     display: flex;
 }
@@ -61,7 +66,7 @@ a {
 
 }
 
-.f-col{
+.f-col {
     display: flex;
     flex-direction: column;
 }
@@ -88,14 +93,15 @@ a {
     gap: 1rem;
 }
 
-.gap-x{
+.gap-x {
     gap: 1.5rem;
 }
+
 .border {
     border: 1px solid;
 }
 
-.height-100{
+.height-100 {
     height: 100%;
 }
 
@@ -117,7 +123,9 @@ a {
     padding-inline: var(--space-3);
 }
 
-input,button,a{
+input,
+button,
+a {
     cursor: pointer;
 }
 
@@ -178,9 +186,10 @@ header {
     gap: var(--space-2);
 }
 
-.posts__list{
+.posts__list {
     flex: 1;
 }
+
 .post__item {
     border: 1px solid;
     padding: var(--space-2);
@@ -240,12 +249,13 @@ header {
 
 /* forms */
 
-.form-content{
+.form-content {
     display: flex;
     align-items: center;
-    height: calc(100% - calc(9rem + 75px) );
+    height: calc(100% - calc(9rem + 75px));
 }
-.form-wrapper{
+
+.form-wrapper {
     margin-inline: auto;
     /* height: 100%; */
     width: 100%;
@@ -255,28 +265,30 @@ header {
     /* text-align: center; */
 }
 
-.form-wrapper--login{
+.form-wrapper--login {
     max-width: 500px;
 }
 
 
-.form-groups{
+.form-groups {
     gap: 1.25em;
     /* margin-block-end: 2em; */
 }
-.form-group{
+
+.form-group {
     display: grid;
     gap: .25rem;
 }
 
-.two-col{
+.two-col {
     flex-wrap: wrap;
 }
-.two-col > *{
+
+.two-col>* {
     flex: 1;
 }
 
-.form__title{
+.form__title {
     line-height: 1.6;
     /* margin-block-end: .75em; */
 }
@@ -285,11 +297,11 @@ header {
 .button {
     font: inherit;
     padding: 1em .5em;
-    width: max(60%,150px);
+    width: max(60%, 150px);
     border-radius: .25rem;
 }
 
-form .button{
+form .button {
 
     margin-inline: auto;
 }
@@ -311,14 +323,15 @@ form .button{
     display: block;
     position: fixed;
 }
+
 /* experimental input design */
 
-.form-group label{
+.form-group label {
     opacity: .5;
-   
+
 }
 
-input{
+input {
     font-size: inherit;
-    padding: .5em ;
+    padding: .5em;
 }

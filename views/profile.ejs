@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <%- include("./partials/head.ejs") %>
 
     <body>
@@ -20,7 +18,9 @@
                             </div>
                             <ul class="user__details">
                                 <li class="detail">
-                                    <p>Post count : <span class=""><%= postsLength %></span></p>
+                                    <p>Post count : <span class="">
+                                            <%= postsLength %>
+                                        </span></p>
                                 </li>
                                 <li class="detail">
                                     <p>Joined : <span class="">
@@ -30,7 +30,8 @@
                                 <% if (profile.member) { %>
                                     <li class="detail">
                                         <p>Member since : <span class="">
-                                                <%=profile.member_since%>
+                                                <%=new Date(profile.member_since).toLocaleTimeString()%> ,
+                                                    <%=new Date(profile.member_since).toDateString()%>
                                             </span></p>
                                     </li>
                                     <% } %>
@@ -38,6 +39,12 @@
                                             <li class="detail"><span class="admin">Admin</span></li>
                                             <% } %>
                             </ul>
+
+                            <% if (currentUser.member && !currentUser.admin) { %>
+                                <a href="/<%= currentUser.id %>/admin">Become our admin</a>
+                                <% } %>
+
+                                    
                         </article>
                         <section class="user__posts f-col padding-inline-500">
                             <%- include("./partials/posts.ejs") %>
@@ -59,6 +66,6 @@
                 </section>
             </main>
     </body>
-        <%- include("./partials/footer.ejs") %>
+    <%- include("./partials/footer.ejs") %>
 
-</html>
+        </html>

@@ -28,7 +28,7 @@ async function postSignUp(req, res, next) {
     // err
     next(err);
   }
-  res.redirect("/");
+  res.redirect("/login");
 }
 
 async function getLogin(req, res, next) {
