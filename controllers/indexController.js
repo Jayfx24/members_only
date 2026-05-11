@@ -1,5 +1,5 @@
 const { body, validationResult, matchedData } = require("express-validator");
-const { genPwd, validPwd } = require("../lib/passwordUtils");
+const { genPwd } = require("../lib/passwordUtils");
 const { validateUser } = require("../utils");
 const db = require("../models/query");
 
@@ -35,8 +35,19 @@ async function getLogin(req, res, next) {
   res.render("forms/loginUser", { title: "Login" });
 }
 
-async function getLoginSuccess(req, res, next) {
+async function loginSuccess(req, res, next) {
   res.redirect("/posts/feeds");
+}
+
+async function postLogin(req, res, next) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render("forms/loginUser", {
+      title: "Login",
+      errors: errors.array(),
+    });
+  }
+  next()
 }
 
 function logout(req, res, next) {
@@ -46,18 +57,13 @@ function logout(req, res, next) {
   res.redirect("/login");
 }
 
-
-
-
-
 // render for 404 and other error
 
 module.exports = {
   getSignUp,
   getLogin,
   postSignUp: [validateUser, postSignUp],
-  getLoginSuccess,
+  loginSuccess,
+  postLogin,
   logout,
-  
 };
-

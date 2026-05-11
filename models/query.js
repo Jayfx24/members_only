@@ -29,6 +29,10 @@ async function addMember(status, date, id) {
     [status, date, id],
   );
 }
+
+async function addAdmin(status, id) {
+  await pool.query("UPDATE users SET admin = $1 WHERE id = $2", [status, id]);
+}
 // posts
 async function detailedPosts() {
   const { rows } = await pool.query(
@@ -65,6 +69,7 @@ module.exports = {
   findUser,
   findUserId,
   addMember,
+  addAdmin,
   posts,
   detailedPosts,
   newPost,

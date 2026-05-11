@@ -1,33 +1,35 @@
 <%- include("../partials/head.ejs") %>
 
 
-<body>
-    <%- include("../partials/header.ejs") %>
-    <main>
-        <section class="wrapper">
-            <div class="form-content">
-                <div class="form-wrapper form-wrapper--login border f-col ">
-                    <h1 class="form__title">Sign In</h1>
-                    <form action="/login" method="post" class="form col gap-x">
-                        <%- include("../partials/error.ejs") %>
-                        <div class="form-groups col ">
-                            <div class="form-group">
-                                <label for="username">Username </label>
-                                <input type="text" name="username" id="username" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password</label>
-                                <input type="password" name="pwd" id="pwd" required>
-                            </div>
+    <body>
+        <%- include("../partials/header.ejs") %>
+            <main>
+                <section class="wrapper">
+                    <div class="form-content">
+                        <div class="form-wrapper form-wrapper--login border f-col ">
+                            <h1 class="form__title">Sign In</h1>
+                            <form action="/login" method="post" class="form col gap-x">
+                                <%- include("../partials/error.ejs") %>
+                                    <div class="form-groups col ">
+                                        <div class="form-group">
+                                            <label for="username">Username </label>
+                                            
+                                            <input type="text" name="username" id="username" autocomplete="on"  required>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pwd">Password</label>
+                                            <input type="password" name="pwd" id="pwd" required>
+                                        </div>
+                                    </div>
+                                    <button class="button" type="submit">Submit</button>
+                            </form>
                         </div>
-                        <button class="button" type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-        <%- include("../partials/footer.ejs") %>
+                    </div>
+                </section>
+            </main>
+            <%- include("../partials/footer.ejs") %>
 
-</body>
+    </body>
 
-</html>
+    </html>

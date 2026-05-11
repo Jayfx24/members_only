@@ -20,7 +20,6 @@ async function postNewPost(req, res, next) {
   // if user is authenticated add new post to db
   const { title, message } = req.body;
   const userID = req.user.id;
-  console.log({ title, message, userID });
   await db.newPost({ title: title.trim(), message, userID });
   res.redirect("/posts/feeds");
 }

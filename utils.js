@@ -1,5 +1,7 @@
 const { body } = require("express-validator");
 const db = require("./models/query");
+const { validPwd, genPwd } = require("./lib/passwordUtils");
+
 const err = {
   alpha: "must only contain letters.",
   length: (min, max) => `must be between ${min} and ${max} characters`,
@@ -57,8 +59,16 @@ const validateLogin = [
     .notEmpty()
     .custom(async (value) => {
       const user = await db.findUser(value);
-      console.log(value, user);
       if (!user) throw new Error("User not found");
+    }),
+
+  body("pwd")
+    .trim()
+    .notEmpty()
+    .custom(async (value, { req }) => {
+      const user = await db.findUser(req.body.username);
+      const isValid = await validPwd(value, user.pwd);
+      if (!isValid) throw new Error("Wrong password!");
     }),
 ];
 

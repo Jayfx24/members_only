@@ -19,7 +19,7 @@
                             <ul class="user__details">
                                 <li class="detail">
                                     <p>Post count : <span class="">
-                                            <%= postsLength %>
+                                            <%= postsLength || 0 %>
                                         </span></p>
                                 </li>
                                 <li class="detail">
@@ -44,7 +44,9 @@
                                 <a href="/<%= currentUser.id %>/admin">Become our admin</a>
                                 <% } %>
 
-                                    
+                                    <% if (currentUser.admin) {%>
+                                        <span class="admin">Admin</span>
+                                        <% } %>
                         </article>
                         <section class="user__posts f-col padding-inline-500">
                             <%- include("./partials/posts.ejs") %>

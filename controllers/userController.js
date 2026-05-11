@@ -7,7 +7,6 @@ async function getProfile(req, res, next) {
   const userPosts = await db.userPosts(req.user.id);
   let p = req.query.p;
   const { page, pageCount, posts } = pagination(userPosts, p);
-  console.log(userPosts);
 
   res.render("profile", {
     profile,
@@ -30,7 +29,6 @@ async function joinClub(req, res, next) {
     });
   }
   const pwd = matchedData(req)["join-pwd"];
-  console.log(pwd);
   await db.addMember(true, new Date(), req.user.id);
   res.redirect("/posts/feeds");
 }
@@ -55,7 +53,9 @@ async function postAdmin(req, res, next) {
     });
   }
   console.log("Now an admin");
+  
   // add query to make admin
+  await db.addAdmin(true,req.user.id)
   res.redirect(`/${res.locals.currentUser.username}/profile`);
 }
 

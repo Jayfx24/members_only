@@ -35,8 +35,6 @@ app.use(passport.session());
 app.use((req, res, next) => {
   res.locals.authenticated = req.isAuthenticated();
   res.locals.currentUser = req.user;
-  
-  // console.log(req.session, req.user);
   next();
 });
 app.use(express.json());
