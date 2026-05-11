@@ -67,6 +67,7 @@ const validateLogin = [
     .notEmpty()
     .custom(async (value, { req }) => {
       const user = await db.findUser(req.body.username);
+      if (!user) return
       const isValid = await validPwd(value, user.pwd);
       if (!isValid) throw new Error("Wrong password!");
     }),
