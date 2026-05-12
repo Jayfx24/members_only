@@ -1,7 +1,7 @@
 const db = require("../models/query");
 const pagination = require("../lib/pagination");
 
-async function allPosts(req, res, next) {
+async function allPosts(req, res) {
   const allPosts = res.locals.currentUser.member
     ? await db.detailedPosts()
     : await db.posts();
@@ -10,13 +10,11 @@ async function allPosts(req, res, next) {
   res.render("feeds", { title: "Feeds", posts, pageCount });
 }
 
-
-
-async function getNewPost(req, res, next) {
+async function getNewPost(req, res) {
   res.render("forms/createPost", { title: "New Message" });
 }
 
-async function postNewPost(req, res, next) {
+async function postNewPost(req, res) {
   // if user is authenticated add new post to db
   const { title, message } = req.body;
   const userID = req.user.id;
@@ -24,8 +22,15 @@ async function postNewPost(req, res, next) {
   res.redirect("/posts/feeds");
 }
 
+async function deletePost(req, res) {
+  await db.delePost(req.params.id);
+  console.log(req.params.id, " deleted");
+  res.redirect("/posts/feeds");
+}
+
 module.exports = {
   allPosts,
   getNewPost,
   postNewPost,
+  deletePost
 };

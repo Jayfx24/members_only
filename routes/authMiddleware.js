@@ -7,15 +7,22 @@ const isAuth = (req, res, next) => {
   }
 };
 
+const isMember = (req, res, next) => {
+  if (req.isAuthenticated() && res.locals.currentUser.member) next();
+  else {
+    res
+      .status(401)
+      .json({ msg: "You are not authorizes to view this resource" });
+  }
+};
+
 const isAdmin = (req, res, next) => {
   if (req.isAuthenticated() && req?.user?.admin) next();
   else {
     res.status(401).json({
-      msg: "You are not authorized to view this resource,because you are not an admin ",
+      msg: "You are not authorized,because you are not an admin ",
     });
   }
 };
 
-
-
-module.exports = { isAuth, isAdmin };
+module.exports = { isAuth,isMember, isAdmin };

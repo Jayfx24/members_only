@@ -6,7 +6,11 @@
                     <%=post.title%>
                 </h2>
 
-                <a href="">delete</a>
+               <% if (currentUser.admin){ %>
+                <form method="POST" action="/posts/delete/<%=post.id%>?_method=DELETE">
+                    <button type="submit">Delete</button>
+                </form>
+                  <%}%>
             </div>
             <div class="post__msg border">
                 <p class="message">
@@ -14,15 +18,18 @@
                 </p>
             </div>
             <div class="post__info row btw gap-sm">
-                <p class="author row f-center"><img src="/images/icons/material-symbols--person.svg" alt="<%= post.username || 'author'%>"> <%=post.author_id===currentUser.id ? 'You' : post.username || 'unknown' %>
+                <p class="author row f-center"><img src="/images/icons/material-symbols--person.svg"
+                        alt="<%= post.username || 'author'%>">
+                    <%=post.author_id===currentUser.id ? 'You' : post.username || 'unknown' %>
                 </p>
-                <p class="post__date">Posted: <%= post.created_at ? new Date(post?.created_at)?.toLocaleString() : 'unknown' %>
+                <p class="post__date">Posted: <%= post.created_at ? new Date(post?.created_at)?.toLocaleString()
+                        : 'unknown' %>
                 </p>
             </div>
         </li>
         <%})%>
 
-        <% if (locals.posts.length < 1) {%>
-            <h2>No post found</h2>
-             <%}%> 
+            <% if (locals.posts.length < 1) {%>
+                <h2>No post found</h2>
+                <%}%>
 </ul>

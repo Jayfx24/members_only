@@ -43,7 +43,7 @@ async function detailedPosts() {
 }
 async function posts() {
   // if user not authenticated send only msg
-  const { rows } = await pool.query("SELECT title, message FROM posts;");
+  const { rows } = await pool.query("SELECT id, title, message FROM posts;");
   return rows;
 }
 
@@ -54,11 +54,15 @@ async function newPost({ title, message, userID }) {
   );
 }
 
+async function delePost(postID) {
+  await pool.query("DELETE FROM posts WHERE id = $1 ", [postID]);
+}
+
 // get user posts
 
 async function userPosts(id) {
   const { rows } = await pool.query(
-    "SELECT title, message, author_id, created_at FROM posts WHERE author_id = $1;",
+    "SELECT * FROM posts WHERE author_id = $1;",
     [id],
   );
   return rows;
@@ -73,6 +77,7 @@ module.exports = {
   posts,
   detailedPosts,
   newPost,
+  delePost,
   userPosts,
 };
 

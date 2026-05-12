@@ -2,6 +2,7 @@ require("dotenv").config;
 require("./config/passport");
 const express = require("express");
 const path = require("node:path");
+const methodOverride = require('method-override')
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 const Pool = require("./config/pool");
@@ -13,6 +14,7 @@ const customError = require("./errors/CustomError");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+
 
 app.use(
   session({
@@ -27,6 +29,7 @@ app.use(
     cookie: { maxAge: 24 * 60 * 60 * 1000 },
   }),
 );
+app.use(methodOverride('_method'))
 app.use(express.static("public"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");

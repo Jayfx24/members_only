@@ -6,15 +6,15 @@
                 <section class="wrapper">
                     <div class="add-post">
                         <a class="add-post__link row f-center padding-inline-500" href="/posts/create-post">
-                            New
-                            Post
+                            New Post
                             <img src="/images//icons//material-symbols--add-notes.svg" alt="">
                         </a>
                     </div>
                     <div class="row gap-sm height-100">
                         <article class="user-profile col padding-inline-700 padding-block-500 border gap">
                             <div class="user__info col g-center">
-                                <div class="avatar">
+                                <div class="avatar row f-center g-center">
+                                    <h1 class="user__initials"><%= currentUser.first_name[0] %>.<%= currentUser.last_name[0] %></h1>
                                 </div>
                                 <h2 class="fullname">
                                     <%=profile.first_name|| undefined %>
