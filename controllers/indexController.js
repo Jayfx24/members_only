@@ -4,6 +4,7 @@ const { validateUser } = require("../utils");
 const db = require("../models/query");
 
 function getSignUp(req, res, next) {
+  if (req.isAuthenticated()) return res.redirect("/posts/feeds");
   res.render("forms/createUser", { title: "Sign Up" });
 }
 
@@ -32,6 +33,7 @@ async function postSignUp(req, res, next) {
 }
 
 async function getLogin(req, res, next) {
+  if (req.isAuthenticated()) return res.redirect("/posts/feeds");
   res.render("forms/loginUser", { title: "Login" });
 }
 
@@ -47,7 +49,7 @@ async function postLogin(req, res, next) {
       errors: errors.array(),
     });
   }
-  next()
+  next();
 }
 
 function logout(req, res, next) {

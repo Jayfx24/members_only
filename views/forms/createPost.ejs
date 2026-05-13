@@ -9,7 +9,7 @@
                         <div class="form-wrapper border f-col ">
                             <h1 class="form__title">New Message</h1>
                             <%- include("../partials/error.ejs") %>
-                                <form action="/posts/<%= locals.currentUser.id%>/create-post " method="post">
+                                <form action="/posts/<%= locals.currentUser.id%>/create-post " method="post" class="form col gap-x">
                                     <div class="form-groups col ">
                                         <div class="form-group">
                                             <label for="title">Title <span class="notice">(max length: 50 chars)</span>:

@@ -20,16 +20,16 @@
                         <section class="posts">
                             <%- include("./partials/posts.ejs") %>
                                 <div class="pagination">
-                                    <ul class="pag-list">
-                                        <li class="pag-item">
-                                            <% if (pageCount> 1){ %>
-                                                <% for (let i=1; i < pageCount + 1; i++){ %>
+                                    <ul class="pag-list row gap-sm g-center">
+                                        <% if (pageCount> 1){ %>
+                                            <% for (let i=1; i < pageCount + 1; i++){ %>
+                                                <li class="pag-item ">
                                                     <a href="/posts/feeds?p=<%= i %>" class="pag-link">
                                                         <%=i%>
                                                     </a>
+                                                </li>
                                                     <% }%>
                                                         <% }%>
-                                        </li>
                                     </ul>
                                 </div>
                         </section>

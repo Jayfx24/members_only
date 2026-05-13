@@ -5,7 +5,8 @@ async function allPosts(req, res) {
   const allPosts = res.locals.currentUser.member
     ? await db.detailedPosts()
     : await db.posts();
-  let p = req.query.p;
+    let p = req.query.p;
+   
   const { page, pageCount, posts } = pagination(allPosts, p);
   res.render("feeds", { title: "Feeds", posts, pageCount });
 }

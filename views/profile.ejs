@@ -5,7 +5,7 @@
             <main>
                 <section class="wrapper">
                     <div class="add-post">
-                        <a class="add-post__link row f-center padding-inline-500" href="/posts/create-post">
+                        <a class="add-post__link link row f-center padding-inline-500" href="/posts/create-post">
                             New Post
                             <img src="/images//icons//material-symbols--add-notes.svg" alt="">
                         </a>
@@ -70,7 +70,7 @@
                         <section class="user__posts f-col padding-inline-500">
                             <%- include("./partials/posts.ejs") %>
                                 <div class="pagination">
-                                    <ul class="pag-list">
+                                    <ul class="pag-list row gap-sm g-center">
                                         <li class="pag-item">
                                             <% if (pageCount> 1){ %>
                                                 <% for (let i=1; i < pageCount + 1; i++){ %>
