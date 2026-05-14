@@ -6,9 +6,10 @@
                     <%=post.title%>
                 </h2>
 
-               <% if (currentUser.admin){ %>
+               <% if (currentUser.admin && post.author_id === currentUser.id){ %>
                 <form method="POST" action="/posts/delete/<%=post.id%>?_method=DELETE">
-                    <button type="submit">Delete</button>
+                    <button class="strip" type="submit"><img src="/images/icons/material-symbols--delete.svg"
+                        alt="delete"></button>
                 </form>
                   <%}%>
             </div>

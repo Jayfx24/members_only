@@ -46,6 +46,10 @@ async function posts() {
   const { rows } = await pool.query("SELECT id, title, message FROM posts;");
   return rows;
 }
+async function findPost(id) {
+  const { rows } = await pool.query("SELECT * FROM posts WHERE id = $1;", [id]);
+  return rows[0];
+}
 
 async function newPost({ title, message, userID }) {
   await pool.query(
@@ -77,6 +81,7 @@ module.exports = {
   posts,
   detailedPosts,
   newPost,
+  findPost,
   delePost,
   userPosts,
 };

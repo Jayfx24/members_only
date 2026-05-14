@@ -5,8 +5,8 @@ async function allPosts(req, res) {
   const allPosts = res.locals.currentUser.member
     ? await db.detailedPosts()
     : await db.posts();
-    let p = req.query.p;
-   
+  let p = req.query.p;
+
   const { page, pageCount, posts } = pagination(allPosts, p);
   res.render("feeds", { title: "Feeds", posts, pageCount });
 }
@@ -24,6 +24,12 @@ async function postNewPost(req, res) {
 }
 
 async function deletePost(req, res) {
+  const post = await db.findPost(req.params.id);
+  console.log(post,post.author_id, res.locals.currentUser.id);
+  if (post.author_id !== res.locals.currentUser.id)
+    return res.status(401).json({
+      msg: "You are not authorized to delete this post. You can only delete your posts ",
+    });
   await db.delePost(req.params.id);
   console.log(req.params.id, " deleted");
   res.redirect("/posts/feeds");
@@ -33,5 +39,5 @@ module.exports = {
   allPosts,
   getNewPost,
   postNewPost,
-  deletePost
+  deletePost,
 };
