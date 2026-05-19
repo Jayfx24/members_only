@@ -2,16 +2,16 @@
     <% locals?.posts.map(post=>{ %>
         <li class="post__item f-col gap-sm">
             <div class="row btw">
-                <h2 class="title">
+                <h2 class="title tp-2">
                     <%=post.title%>
                 </h2>
 
-               <% if (currentUser.admin && post.author_id === currentUser.id){ %>
-                <form method="POST" action="/posts/delete/<%=post.id%>?_method=DELETE">
-                    <button class="strip" type="submit"><img src="/images/icons/material-symbols--delete.svg"
-                        alt="delete"></button>
-                </form>
-                  <%}%>
+                <% if (currentUser.admin && post.author_id===currentUser.id){ %>
+                    <form method="POST" action="/posts/delete/<%=post.id%>?_method=DELETE">
+                        <button class="strip" type="submit"><img src="/images/icons/material-symbols--delete.svg"
+                                alt="delete"></button>
+                    </form>
+                    <%}%>
             </div>
             <div class="post__msg ">
                 <p class="message">
@@ -19,11 +19,11 @@
                 </p>
             </div>
             <div class="post__info row btw gap-sm">
-                <p class="author row f-center"><img src="/images/icons/material-symbols--person.svg"
-                        alt="<%= post.username || 'author'%>">
+                <p class="author row f-center tp-4">
+                    <img src="/images/icons/material-symbols--person.svg" alt="<%= post.username || 'author'%>">
                     <%=post.author_id===currentUser.id ? 'You' : post.username || 'unknown' %>
                 </p>
-                <p class="post__date">Posted: <%= post.created_at ? new Date(post?.created_at)?.toLocaleString()
+                <p class="post__date tp-4">Posted: <%= post.created_at ? new Date(post?.created_at)?.toLocaleString()
                         : 'unknown' %>
                 </p>
             </div>
@@ -31,6 +31,6 @@
         <%})%>
 
             <% if (locals.posts.length < 1) {%>
-                <h2>No post found</h2>
+                <h2 class="tp-2 ">No post found</h2>
                 <%}%>
 </ul>

@@ -2,11 +2,12 @@ const db = require("../models/query");
 const pagination = require("../lib/pagination");
 
 const { validationResult, matchedData } = require("express-validator");
+
 async function getProfile(req, res, next) {
   const profile = await db.findUserId(req.user.id);
   const userPosts = await db.userPosts(req.user.id);
   let p = req.query.p;
-  const { page, pageCount, posts } = pagination(userPosts, p);
+  const { page, pageCount, posts } = pagination(userPosts, p,4);
 
   res.render("profile", {
     profile,
@@ -33,12 +34,7 @@ async function joinClub(req, res, next) {
   res.redirect("/posts/feeds");
 }
 
-async function userPosts(req, res, next) {
-  const allPosts = await db.userPosts();
-  let p = req.query.p;
-  const { page, pageCount, posts } = pagination(allPosts, p);
-  res.render("feeds", { title: "Feeds", posts, pageCount });
-}
+
 
 function getAdmin(req, res) {
   res.render("join-club", { title: "Become our admin" });
@@ -52,10 +48,9 @@ async function postAdmin(req, res, next) {
       errors: errors.array(),
     });
   }
-  console.log("Now an admin");
-  
+
   // add query to make admin
-  await db.addAdmin(true,req.user.id)
+  await db.addAdmin(true, req.user.id);
   res.redirect(`/${res.locals.currentUser.username}/profile`);
 }
 

@@ -9,11 +9,13 @@ const {
   postLogin,
   logout,
 } = require("../controllers/indexController");
+const { isAuth } = require("./authMiddleware");
+
 
 router.get("/register", getSignUp);
 router.post("/register", postSignUp);
 router.get("/login", getLogin);
-router.get("/feeds", loginSuccess);
+router.get("/feeds",isAuth, loginSuccess);
 router.post(
   "/login",
   [validateLogin, postLogin],

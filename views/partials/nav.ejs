@@ -3,18 +3,18 @@
 
     <ul class="nav__items row gap-sm " id="primary-navigation">
         <% if (! locals.authenticated) { %>
-            <li class="nav__item"><a href="/" class="nav__link">Home</a></li>
-            <li class="nav__item"><a href="/login" class="nav__link">Login</a></li>
-            <li class="nav__item"><a href="/register" class="nav__link">Register</a></li>
+            <li class="nav__item nav-p"><a href="/" class="nav__link">Home</a></li>
+            <li class="nav__item nav-p"><a href="/login" class="nav__link">Login</a></li>
+            <li class="nav__item nav-p"><a href="/register" class="nav__link">Register</a></li>
             <%}else{%>
                 <% if (!currentUser.member) {%>
-                    <li class="nav__item"><a href="/<%= currentUser.username %>/join-club">JOIN CLUB</a></li>
+                    <li class="nav__item "><a href="/<%= currentUser.username %>/join-club">JOIN CLUB</a></li>
                     <% } %>
 
-                        <li class="nav__item"><a href="/posts/feeds" class="nav__link">Posts</a></li>
-                        <li class="nav__item"><a href="/<%= currentUser.username %>/profile"
+                        <li class="nav__item nav-p"><a href="/posts/feeds" class="nav__link">Posts</a></li>
+                        <li class="nav__item nav-p"><a href="/<%= currentUser.username %>/profile"
                                 class="nav__link">Profile</a></li>
-                        <li class="nav__item"><a href="/logout" class="nav__link">Sign Out</a></li>
+                        <li class="nav__item nav-p"><a href="/logout" class="nav__link">Sign Out</a></li>
                         <%}%>
     </ul>
     <!-- </div> -->

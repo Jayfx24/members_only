@@ -47,7 +47,7 @@ app.use("/:user", userRoutes);
 app.use("/posts", postsRoutes);
 app.use("/", indexRoutes);
 app.use(function (req, res) {
-  res.status(404).send("Page not found");
+  res.status(404).send("<h1>404! Page not found</h1> <a href='javascript:history.back()'>Go Back</a>");
 });
 app.use(customError);
 

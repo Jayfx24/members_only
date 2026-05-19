@@ -2,7 +2,7 @@ const db = require("../models/query");
 const pagination = require("../lib/pagination");
 
 async function allPosts(req, res) {
-  const allPosts = res.locals.currentUser.member
+  const allPosts = res.locals?.currentUser.member
     ? await db.detailedPosts()
     : await db.posts();
   let p = req.query.p;
@@ -25,7 +25,6 @@ async function postNewPost(req, res) {
 
 async function deletePost(req, res) {
   const post = await db.findPost(req.params.id);
-  console.log(post,post.author_id, res.locals.currentUser.id);
   if (post.author_id !== res.locals.currentUser.id)
     return res.status(401).json({
       msg: "You are not authorized to delete this post. You can only delete your posts ",

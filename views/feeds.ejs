@@ -1,22 +1,25 @@
-
-
 <%- include("./partials/head.ejs") %>
 
     <body>
         <%- include("./partials/header.ejs") %>
 
             <main>
-                
+
                 <div class="wrapper">
                     <section class="content">
                         <div class="add-post">
-                            <a class="add-post__link link row f-center" href="/posts/create-post">
-                                New
-                                Post
-                                <img src="/images//icons//material-symbols--add-notes.svg" alt="">
-                            </a>
-                        </div>
+                            <% if (currentUser.member){ %>
+                                <a class="add-post__link link row f-center" href="/posts/create-post">
+                                    New
+                                    Post
+                                    <img src="/images//icons//material-symbols--add-notes.svg" alt="">
+                                </a>
+                                <% }else{%>
+                                    <a href="/<%=currentUser.id%>/join-club"><span class="join">Join our club to
+                                            post!</span></a>
 
+                                    <% }%>
+                        </div>
                         <section class="posts">
                             <%- include("./partials/posts.ejs") %>
                                 <div class="pagination">
@@ -28,8 +31,8 @@
                                                         <%=i%>
                                                     </a>
                                                 </li>
+                                                <% }%>
                                                     <% }%>
-                                                        <% }%>
                                     </ul>
                                 </div>
                         </section>
@@ -37,8 +40,8 @@
                 </div>
 
             </main>
-        <%- include("./partials/footer.ejs") %>
-           
+            <%- include("./partials/footer.ejs") %>
+
     </body>
 
-</html>
+    </html>

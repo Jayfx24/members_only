@@ -14,7 +14,7 @@ async function findUser(username) {
     "SELECT * FROM users WHERE username = $1;",
     [username],
   );
-  console.log(rows[0], username);
+
   return rows[0];
 }
 

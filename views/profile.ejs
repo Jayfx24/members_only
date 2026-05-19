@@ -5,45 +5,56 @@
             <main>
                 <section class="wrapper">
                     <div class="add-post">
-                        <a class="add-post__link link row f-center padding-inline-500" href="/posts/create-post">
-                            New Post
-                            <img src="/images//icons//material-symbols--add-notes.svg" alt="">
-                        </a>
+                        <% if (currentUser.member){ %>
+                            <a class="add-post__link link row f-center padding-inline-500" href="/posts/create-post">
+                                New Post
+                                <img src="/images//icons//material-symbols--add-notes.svg" alt="">
+                            </a>
+                            <% }else{%>
+                                <a href="/<%=currentUser.id%>/join-club"><span class="join">Join our club to
+                                        post!</span></a>
+                                <% }%>
                     </div>
-                    <div class="row gap-sm height-100">
-                        <article class="user-profile col padding-inline-700 padding-block-500 gap">
-                            <div class="user__info col g-center">
+                    <div class="content--profile row gap-sm height-100">
+                        <article class="user-profile col padding-inline-700 padding-block-700 gap-x">
+                            <div class="user__info  col gap g-center">
                                 <div class="avatar row f-center g-center">
-                                    <h1 class="user__initials"><%= currentUser.first_name[0] %>.<%= currentUser.last_name[0] %></h1>
+                                    <h1 class="user__initials">
+                                        <%= currentUser.first_name[0] %>.<%= currentUser.last_name[0] %>
+                                    </h1>
                                 </div>
-                                <h2 class="fullname">
-                                    <%=profile.first_name|| undefined %>
-                                        <%=profile.last_name|| undefined %>
-                                </h2>
-                                <p class="username">@<%= profile.username %>
-                                </p>
+                                <div class="user__info__txt">
+                                    <h2 class="fullname tp-2">
+                                        <%=profile.first_name|| undefined %>
+                                            <%=profile.last_name|| undefined %>
+                                    </h2>
+                                    <p class="username tp-4">@<%= profile.username %>
+                                    </p>
+                                </div>
                             </div>
                             <ul class="user__details col gap-sm">
-                                <li class="detail">
-                                    <p>Post count : <span class="">
-                                            <%= postsLength || 0 %>
-                                        </span></p>
+                                <li class="detail tp-3">
+                                    <p class="descr ">Post count</p>
+                                    <span class="value">
+                                        <%= postsLength || 0 %>
+                                    </span>
                                 </li>
-                                <li class="detail">
-                                    <p>Joined : <span class="">
-                                            <%= new Date(profile.created_at).toDateString() %>
-                                        </span></p>
+                                <li class="detail tp-3">
+                                    <p class="descr ">Joined</p> <span class="value">
+                                        <%= new Date(profile.created_at).toDateString() %>
+                                    </span>
                                 </li>
                                 <% if (profile.member) { %>
-                                    <li class="detail">
-                                        <p>Member since : <span class="">
-                                                <%=new Date(profile.member_since).toLocaleTimeString()%> ,
-                                                    <%=new Date(profile.member_since).toDateString()%>
-                                            </span></p>
+                                    <li class="detail tp-3">
+                                        <p class="descr ">Member since </p>
+                                        <span class="value">
+                                            <%=new Date(profile.member_since).toLocaleTimeString()%> ,
+                                                <%=new Date(profile.member_since).toDateString()%>
+                                        </span>
                                     </li>
                                     <% } %>
 
-                                        
+
                             </ul>
 
                             <% if (currentUser.member && !currentUser.admin) { %>
@@ -51,21 +62,19 @@
                                         src="/images/icons/material-symbols--admin-panel-settings.svg"
                                         alt="Become our admin"> Become our admin</a>
                                 <% } %>
-                                     <span class="row f-center gap">
-                                         <% if (currentUser.member) { %>
-                                                        <span class="member row f-center"> <img
-                                                                src="/images/icons/material-symbols--card-membership.svg"
-                                                                alt="Member">Member</span>
-                                         
-                                                    <% } %>
-                                                                             <% if (currentUser.admin) {%>
-                                            <span class="admin row f-center"> <img
-                                                    src="/images/icons/material-symbols--admin-panel-settings.svg"
-                                                    alt="Admin">Admin</span>
-                                            <% } %>
-                                     </span>
+                                    <span class="col gap-sm tp-3">
+                                        <% if (currentUser.member) { %>
+                                            <span class="member row f-center user-status user-status--member">
+                                                Member</span>
 
-                                           
+                                            <% } %>
+                                                <% if (currentUser.admin) {%>
+                                                    <span class="admin row f-center user-status user-status--admin">
+                                                        Admin</span>
+                                                    <% } %>
+                                    </span>
+
+
                         </article>
                         <section class="user__posts f-col padding-inline-500">
                             <%- include("./partials/posts.ejs") %>

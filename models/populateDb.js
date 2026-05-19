@@ -9,7 +9,7 @@ async function runSql(loc) {
   });
   await client.connect();
   const sql = fs.readFileSync(path.join(__dirname, loc)).toString();
-  console.log(sql)
+
   await client.query(sql);
   await client.end();
 }

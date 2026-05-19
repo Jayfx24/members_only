@@ -7,10 +7,9 @@ const {
 } = require("../controllers/postsController");
 const { isAuth, isMember, isAdmin } = require("./authMiddleware");
 
-router.use(isAuth);
-router.get("/feeds{/:p}", allPosts);
-router.get("/create-post", isMember, getNewPost);
-router.post("/create-post", isMember, postNewPost);
-router.delete("/delete/:id", isAdmin, deletePost);
+router.get("/feeds{/:p}", [isAuth, isMember],  allPosts);
+router.get("/create-post", [isAuth, isMember], getNewPost);
+router.post("/create-post", [isAuth, isMember], postNewPost);
+router.delete("/delete/:id", [isAuth,isAdmin], deletePost);
 
 module.exports = router;
