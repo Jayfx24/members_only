@@ -50,7 +50,7 @@ Built as part of the The Odin Project curriculum to practice authentication, aut
 ## About The Project
 
 
-`jay24fx`, `members_only`, 
+`jayfx24`, `members_only`, 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -85,7 +85,7 @@ This is an example of how to list things you need to use the software and how to
 1. Get a DB URL at
 2. Clone the repo
    ```sh
-   git clone https://github.com/jay24fx/members_only.git
+   git clone https://github.com/jayfx24/members_only.git
    ```
 3. Install NPM packages
    ```sh
@@ -128,7 +128,7 @@ This is an example of how to list things you need to use the software and how to
 
 Jay - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
-Project Link: [https://github.com/jay24fx/members_only](https://github.com/jay24fx/members_only)
+Project Link: [https://github.com/jayfx24/members_only](https://github.com/jayfx24/members_only)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
