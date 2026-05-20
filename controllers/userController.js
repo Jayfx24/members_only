@@ -7,14 +7,14 @@ async function getProfile(req, res, next) {
   const profile = await db.findUserId(req.user.id);
   const userPosts = await db.userPosts(req.user.id);
   let p = req.query.p;
-  const { page, pageCount, posts } = pagination(userPosts, p,4);
+  const { page, pageCount, posts } = pagination(userPosts, p, 4);
 
   res.render("profile", {
     profile,
     posts,
     pageCount,
     postsLength: userPosts.length || null,
-    title: `${profile.username.toUpperCase()}|Profile`,
+    title: ` Profile | ${profile.username.toUpperCase()} `,
   });
 }
 
@@ -31,10 +31,9 @@ async function joinClub(req, res, next) {
   }
   const pwd = matchedData(req)["join-pwd"];
   await db.addMember(true, new Date(), req.user.id);
+
   res.redirect("/posts/feeds");
 }
-
-
 
 function getAdmin(req, res) {
   res.render("join-club", { title: "Become our admin" });

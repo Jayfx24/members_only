@@ -33,18 +33,21 @@ const validateUser = [
     .withMessage(`Username name ${err.notEmpty}`)
     .isLength({ min: 4, max: 10 })
     .withMessage(`Username ${err.length(4, 10)}`),
-  body("pwd").trim().notEmpty().withMessage(`Password ${err.notEmpty}`),
-  // .isLength({ min: 8 })
-  // .withMessage(`Password ${err.leastLen(8)}`)
-  // .isStrongPassword({
-  //   min: 8,
-  //   minLowercase: 1,
-  //   minUppercase: 1,
-  //   minSymbols: 1,
-  // })
-  // .withMessage(
-  //   `Password must be a combination of one uppercase , one lowercase, one special char`,
-  // ),
+  body("pwd")
+    .trim()
+    .notEmpty()
+    .withMessage(`Password ${err.notEmpty}`)
+    .isLength({ min: 8 })
+    .withMessage(`Password ${err.leastLen(8)}`)
+    .isStrongPassword({
+      min: 8,
+      minLowercase: 1,
+      minUppercase: 1,
+      minSymbols: 1,
+    })
+    .withMessage(
+      `Password must be a combination of one uppercase , one lowercase, one special char`,
+    ),
   body("cPwd")
     .trim()
     .notEmpty()
@@ -58,7 +61,7 @@ const validateLogin = [
     .trim()
     .notEmpty()
     .custom(async (value) => {
-      const user = await db.findUser(value);
+      const user = await db.findUser(value.toLowerCase());
       if (!user) throw new Error("User not found");
     }),
 
@@ -67,7 +70,7 @@ const validateLogin = [
     .notEmpty()
     .custom(async (value, { req }) => {
       const user = await db.findUser(req.body.username);
-      if (!user) return
+      if (!user) return;
       const isValid = await validPwd(value, user.pwd);
       if (!isValid) throw new Error("Wrong password!");
     }),

@@ -21,6 +21,7 @@ async function postSignUp(req, res, next) {
   // hash
   const { pwd, cPwd: _, ...data } = matchedData(req);
   data["pwd"] = await genPwd(pwd);
+  data["username"] = data["username"].toLowerCase()
 
   // add to db
   try {
